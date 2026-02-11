@@ -1,0 +1,39 @@
+[
+  {
+    "questionId": "q-basics-1",
+    "topic": "python_basics",
+    "difficulty": 2,
+    "prompt": "Which of these is a valid variable name in Python?",
+    "options": ["1name", "name_1", "name-1", "name 1"],
+    "correctIndex": 1,
+    "explanation": "Python variable names can include underscores and digits, but cannot start with a digit or include spaces/hyphens."
+  },
+  {
+    "questionId": "q-basics-2",
+    "topic": "python_basics",
+    "difficulty": 2,
+    "prompt": "What is the output of: print(type(10)) ?",
+    "options": ["int", "<class 'int'>", "integer", "number"],
+    "correctIndex": 1,
+    "explanation": "type(10) returns <class 'int'>."
+  },
+
+  {
+    "questionId": "q-loops-1",
+    "topic": "python_loops",
+    "difficulty": 4,
+    "prompt": "Which loop repeats a block while a condition remains True?",
+    "options": ["for", "while", "repeat-until", "loop"],
+    "correctIndex": 1,
+    "explanation": "while loop continues as long as the condition is True."
+  },
+  {
+    "questionId": "q-loops-2",
+    "topic": "python_loops",
+    "difficulty": 4,
+    "prompt": "What does 'break' do inside a loop?",
+    "options": ["Skips current iteration", "Stops the loop", "Restarts the loop", "Stops the program"],
+    "correctIndex": 1,
+    "explanation": "break exits the loop immediately."
+  }
+]

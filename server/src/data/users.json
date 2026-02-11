@@ -1,0 +1,28 @@
+[
+  {
+    "userId": "u-junior",
+    "name": "Junior Employee",
+    "role": "employee",
+    "learning_style_preference": "mixed",
+    "mastery_map": {},
+    "format_stats": {
+      "video": { "attempts": 0, "avgScore": 0 },
+      "doc": { "attempts": 0, "avgScore": 0 },
+      "infographic": { "attempts": 0, "avgScore": 0 },
+      "lab": { "attempts": 0, "avgScore": 0 }
+    }
+  },
+  {
+    "userId": "u-senior",
+    "name": "Senior Employee",
+    "role": "employee",
+    "learning_style_preference": "mixed",
+    "mastery_map": {},
+    "format_stats": {
+      "video": { "attempts": 0, "avgScore": 0 },
+      "doc": { "attempts": 0, "avgScore": 0 },
+      "infographic": { "attempts": 0, "avgScore": 0 },
+      "lab": { "attempts": 0, "avgScore": 0 }
+    }
+  }
+]

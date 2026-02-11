@@ -1,0 +1,37 @@
+[
+  {
+    "pathId": "path-junior-1",
+    "userId": "u-junior",
+    "courseId": "course-python-foundations",
+    "nodes": [
+      { "assetId": "py-basics-doc-1", "status": "unlocked", "addedBy": "course" },
+      { "assetId": "py-strings-doc-1", "status": "locked", "addedBy": "course" },
+      { "assetId": "py-loops-doc-1", "status": "locked", "addedBy": "course" },
+      { "assetId": "py-arrays-doc-1", "status": "locked", "addedBy": "course" },
+      { "assetId": "py-arrays-lab-adv-1", "status": "locked", "addedBy": "course" }
+    ],
+    "currentIndex": 0,
+    "nextAssetId": "py-basics-doc-1",
+    "lastUpdatedReason": "Course initialized.",
+    "etaMinutes": 90,
+    "updatedAt": "2026-02-11T10:05:00+05:30"
+  },
+
+  {
+    "pathId": "path-senior-1",
+    "userId": "u-senior",
+    "courseId": "course-python-foundations",
+    "nodes": [
+      { "assetId": "py-basics-doc-1", "status": "unlocked", "addedBy": "course" },
+      { "assetId": "py-strings-doc-1", "status": "locked", "addedBy": "course" },
+      { "assetId": "py-loops-doc-1", "status": "locked", "addedBy": "course" },
+      { "assetId": "py-arrays-doc-1", "status": "locked", "addedBy": "course" },
+      { "assetId": "py-arrays-lab-adv-1", "status": "locked", "addedBy": "course" }
+    ],
+    "currentIndex": 0,
+    "nextAssetId": "py-basics-doc-1",
+    "lastUpdatedReason": "Course initialized.",
+    "etaMinutes": 60,
+    "updatedAt": "2026-02-11T10:05:00+05:30"
+  }
+]

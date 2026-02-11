@@ -1,0 +1,17 @@
+[
+  {
+    "courseId": "course-python-foundations",
+    "title": "Python Foundations Certification",
+    "description": "A structured path to strong Python basics with adaptive learning.",
+    "skillTags": ["python", "programming"],
+    "moduleAssetIds": [
+      "py-basics-doc-1",
+      "py-strings-doc-1",
+      "py-loops-doc-1",
+      "py-arrays-doc-1",
+      "py-arrays-lab-adv-1"
+    ],
+    "createdBy": "admin-1",
+    "active": true
+  }
+]
