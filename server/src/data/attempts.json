@@ -1,0 +1,37 @@
+[
+  {
+    "attemptId": "att-1",
+    "userId": "u-junior",
+    "courseId": "course-python-foundations",
+    "pathId": "path-junior-1",
+    "assetId": "py-loops-doc-1",
+    "topic": "python_loops",
+    "format": "doc",
+    "assetDifficulty": 4,
+    "timeSpentMin": 30,
+    "timeRatio": 1.7,
+    "askedQuestionIds": ["q-loops-1", "q-loops-2"],
+    "wrongQuestionIds": ["q-loops-2"],
+    "score": 50,
+    "attemptNo": 1,
+    "createdAt": "2026-02-11T11:00:00+05:30"
+  },
+
+  {
+    "attemptId": "att-2",
+    "userId": "u-senior",
+    "courseId": "course-python-foundations",
+    "pathId": "path-senior-1",
+    "assetId": "py-basics-doc-1",
+    "topic": "python_basics",
+    "format": "doc",
+    "assetDifficulty": 2,
+    "timeSpentMin": 6,
+    "timeRatio": 0.6,
+    "askedQuestionIds": ["q-basics-1", "q-basics-2"],
+    "wrongQuestionIds": [],
+    "score": 100,
+    "attemptNo": 1,
+    "createdAt": "2026-02-11T11:05:00+05:30"
+  }
+]

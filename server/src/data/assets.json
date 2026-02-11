@@ -1,0 +1,123 @@
+[
+  {
+    "assetId": "py-basics-doc-1",
+    "title": "Python Basics (Quick Notes)",
+    "topic": "python_basics",
+    "format": "doc",
+    "difficulty": 2,
+    "level": "intro",
+    "prerequisites": [],
+    "expectedTimeMin": 10,
+    "url": "https://example.com/python-basics-notes"
+  },
+  {
+    "assetId": "py-basics-video-1",
+    "title": "Python Basics (Video Crash Course)",
+    "topic": "python_basics",
+    "format": "video",
+    "difficulty": 2,
+    "level": "intro",
+    "prerequisites": [],
+    "expectedTimeMin": 12,
+    "url": "https://example.com/python-basics-video"
+  },
+  {
+    "assetId": "py-strings-doc-1",
+    "title": "Strings: Concepts + Examples",
+    "topic": "python_strings",
+    "format": "doc",
+    "difficulty": 3,
+    "level": "core",
+    "prerequisites": ["py-basics-doc-1"],
+    "expectedTimeMin": 15,
+    "url": "https://example.com/strings-doc"
+  },
+  {
+    "assetId": "py-strings-video-1",
+    "title": "Strings in 10 Minutes",
+    "topic": "python_strings",
+    "format": "video",
+    "difficulty": 3,
+    "level": "core",
+    "prerequisites": ["py-basics-video-1"],
+    "expectedTimeMin": 10,
+    "url": "https://example.com/strings-video"
+  },
+  {
+    "assetId": "py-loops-doc-1",
+    "title": "Loops: for/while + Patterns",
+    "topic": "python_loops",
+    "format": "doc",
+    "difficulty": 4,
+    "level": "core",
+    "prerequisites": ["py-strings-doc-1"],
+    "expectedTimeMin": 18,
+    "url": "https://example.com/loops-doc"
+  },
+  {
+    "assetId": "py-loops-video-1",
+    "title": "Loops Visual Guide",
+    "topic": "python_loops",
+    "format": "video",
+    "difficulty": 3,
+    "level": "core",
+    "prerequisites": ["py-strings-video-1"],
+    "expectedTimeMin": 12,
+    "url": "https://example.com/loops-video"
+  },
+  {
+    "assetId": "py-loops-infographic-1",
+    "title": "Loops Cheat Sheet (Infographic)",
+    "topic": "python_loops",
+    "format": "infographic",
+    "difficulty": 2,
+    "level": "intro",
+    "prerequisites": ["py-basics-doc-1"],
+    "expectedTimeMin": 6,
+    "url": "https://example.com/loops-infographic"
+  },
+  {
+    "assetId": "py-loops-lab-adv-1",
+    "title": "Advanced Loops Lab: Patterns + Nested Loops",
+    "topic": "python_loops",
+    "format": "lab",
+    "difficulty": 7,
+    "level": "advanced",
+    "prerequisites": ["py-loops-doc-1"],
+    "expectedTimeMin": 25,
+    "url": "https://example.com/loops-lab-advanced"
+  },
+  {
+    "assetId": "py-arrays-doc-1",
+    "title": "Lists (Arrays) Basics",
+    "topic": "python_arrays",
+    "format": "doc",
+    "difficulty": 4,
+    "level": "core",
+    "prerequisites": ["py-loops-doc-1"],
+    "expectedTimeMin": 18,
+    "url": "https://example.com/lists-doc"
+  },
+  {
+    "assetId": "py-arrays-video-1",
+    "title": "Lists Visual Walkthrough",
+    "topic": "python_arrays",
+    "format": "video",
+    "difficulty": 4,
+    "level": "core",
+    "prerequisites": ["py-loops-video-1"],
+    "expectedTimeMin": 14,
+    "url": "https://example.com/lists-video"
+  },
+  {
+    "assetId": "py-arrays-lab-adv-1",
+    "title": "Lists Lab: Real Tasks",
+    "topic": "python_arrays",
+    "format": "lab",
+    "difficulty": 7,
+    "level": "advanced",
+    "prerequisites": ["py-arrays-doc-1"],
+    "expectedTimeMin": 30,
+    "url": "https://example.com/lists-lab"
+  }
+]

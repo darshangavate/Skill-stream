@@ -1,0 +1,18 @@
+[
+  {
+    "enrollmentId": "enr-1",
+    "userId": "u-junior",
+    "courseId": "course-python-foundations",
+    "status": "active",
+    "enrolledAt": "2026-02-11T10:00:00+05:30",
+    "targetPace": 60
+  },
+  {
+    "enrollmentId": "enr-2",
+    "userId": "u-senior",
+    "courseId": "course-python-foundations",
+    "status": "active",
+    "enrolledAt": "2026-02-11T10:00:00+05:30",
+    "targetPace": 60
+  }
+]
