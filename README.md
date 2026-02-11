@@ -11,20 +11,6 @@ Upskill is an MVP platform designed around 4 core features:
 3. **🧠 Recommendation Engine** - Personalized next-step suggestions
 4. **🧪 Simulator** - Demo and testing the recommendation engine
 
-## 🛠️ Tech Stack
-
-### Frontend
-
-- **React 18** - UI library
-- **Vite** - Fast build tool and dev server
-- **JavaScript (ES Modules)**
-
-### Backend
-
-- **Node.js** - JavaScript runtime
-- **Express.js** - Web framework
-- **CORS** - Cross-origin request handling
-
 ## 📁 Project Structure
 
 ```
@@ -95,67 +81,7 @@ MVP/
 | 👤 User      | `user.routes.js`    | Components | User tracking   |
 | 🧠 Engine    | `engine.service.js` | Components | Recommendations |
 | 🧪 Simulator | `engine.routes.js`  | Pages      | Demo/testing    |
-
-## ⚙️ Installation
-
-### Prerequisites
-
-- Node.js (v14+)
-- npm (v6+)
-
-### Setup Steps
-
-1. **Clone repository**
-
-   ```bash
-   git clone https://github.com/darshangavate/Upskill.git
-   cd Upskill
-   ```
-
-2. **Install server dependencies**
-
-   ```bash
-   cd server
-   npm install
-   cd ..
-   ```
-
-3. **Install client dependencies**
-   ```bash
-   cd client
-   npm install
-   cd ..
-   ```
-
-## 🎮 Running the Application
-
-### Terminal 1: Start Backend Server
-
-```bash
-cd server
-npm start
-```
-
-**Server runs on:** `http://localhost:5000`
-
-### Terminal 2: Start Frontend Dev Server
-
-```bash
-cd client
-npx vite
-```
-
-**Frontend runs on:** `http://localhost:5173`
-
-## 🧪 Smoke Test
-
-The frontend includes a test component with 3 buttons:
-
-- **Catalog** - Fetches from `/api/catalog`
-- **User** - Fetches from `/api/user`
-- **Engine** - Fetches from `/api/engine`
-
-Check browser console for JSON responses.
+ 
 
 ## 📦 Mock Data
 
@@ -208,15 +134,6 @@ GET /api/engine
 
 Returns: Personalized recommendations
 
-## 🎯 Next Steps
-
-- [ ] Connect MongoDB database
-- [ ] Implement JWT authentication
-- [ ] Build UI components
-- [ ] Add progress tracking
-- [ ] Implement search functionality
-- [ ] Finalize recommendation algorithm
-- [ ] Add unit and integration tests
 
 ## 🏗️ Architecture Philosophy
 
