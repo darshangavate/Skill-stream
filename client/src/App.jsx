@@ -1,33 +1,20 @@
-import { useState } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Shell from "./components/Shell";
+import Dashboard from "./pages/Dashboard";
+import Quiz from "./pages/Quiz";
+import Path from "./pages/Path";
 
 export default function App() {
-  const [response, setResponse] = useState(null);
-
-  const fetchCatalog = async () => {
-    const data = await fetch('http://localhost:5000/api/catalog').then(r => r.json());
-    console.log(data);
-    setResponse(data);
-  };
-
-  const fetchUser = async () => {
-    const data = await fetch('http://localhost:5000/api/user').then(r => r.json());
-    console.log(data);
-    setResponse(data);
-  };
-
-  const fetchEngine = async () => {
-    const data = await fetch('http://localhost:5000/api/engine').then(r => r.json());
-    console.log(data);
-    setResponse(data);
-  };
-
   return (
-    <div>
-      <h1>Smoke Test</h1>
-      <button onClick={fetchCatalog}>Catalog</button>
-      <button onClick={fetchUser}>User</button>
-      <button onClick={fetchEngine}>Engine</button>
-      {response && <p>{JSON.stringify(response)}</p>}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Shell />}>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/quiz" element={<Quiz />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="/path" element={<Path />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
