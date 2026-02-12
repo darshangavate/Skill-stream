@@ -10,6 +10,90 @@ import Course from "../models/Course.js";
 import Attempt from "../models/Attempt.js";
 import Asset from "../models/Asset.js";
 
+import Enrollment from "../models/Enrollment.js";
+import Path from "../models/Path.js";
+
+// ... keep your existing imports + ok/fail + getDashboard
+
+function makeId(prefix, ...parts) {
+  return `${prefix}-${parts.join("-")}`.toLowerCase().replace(/[^a-z0-9-]/g, "-");
+}
+
+export const enrollInCourse = async (req, res) => {
+  try {
+    const { userId, courseId } = req.params;
+
+    // 1) Validate user + course
+    const user = await User.findOne({ userId });
+    if (!user) return fail(res, `User not found: ${userId}`, 404);
+
+    const course = await Course.findOne({ courseId, active: true });
+    if (!course) return fail(res, `Course not found/active: ${courseId}`, 404);
+
+    if (!Array.isArray(course.moduleAssetIds) || course.moduleAssetIds.length === 0) {
+      return fail(res, `Course has no modules (moduleAssetIds empty): ${courseId}`, 400);
+    }
+
+    // 1.5) Make all other courses not active
+    await Enrollment.updateMany(
+      { userId, courseId: { $ne: courseId }, status: "active" },
+      { $set: { status: "paused" } }
+    );
+
+    // 2) Create Enrollment if not exists
+    const enrollmentId = makeId("enr", userId, courseId);
+
+    let enrollment = await Enrollment.findOne({ userId, courseId });
+    if (!enrollment) {
+      enrollment = await Enrollment.create({
+        enrollmentId,
+        userId,
+        courseId,
+        status: "active",
+        enrolledAt: new Date(),
+        targetPace: 30,
+      });
+    } else if (enrollment.status !== "active") {
+      enrollment.status = "active";
+      await enrollment.save();
+    }
+
+    // 3) Create Path if not exists
+    const pathId = makeId("path", userId, courseId);
+
+    let path = await Path.findOne({ userId, courseId });
+    if (!path) {
+      const nodes = course.moduleAssetIds.map((assetId) => ({
+        assetId,
+        status: "pending",
+        addedBy: "engine",
+      }));
+
+      path = await Path.create({
+        pathId,
+        userId,
+        courseId,
+        nodes,
+        currentIndex: 0,
+        nextAssetId: nodes[0]?.assetId,
+        lastUpdatedReason: "User enrolled. Path created from course modules.",
+        etaMinutes: nodes.length * 15,
+        updatedAt: new Date(),
+      });
+    }
+
+    return ok(res, { enrollment, path });
+  } catch (error) {
+    return fail(res, error.message, 500);
+  }
+};
+
+
+
+
+
+
+
 function ok(res, data) {
   return res.json({ ok: true, data });
 }
@@ -81,7 +165,7 @@ export const getDashboard = async (req, res) => {
       "courseId title description skillTags"
     );
 
-    const recentAttempts = await Attempt.find({ userId })
+    const recentAttempts = await Attempt.find({ userId, courseId: enrollment.courseId })
       .sort({ createdAt: -1 })
       .limit(5)
       .select("attemptId topic score timeSpentMin assetId createdAt");
@@ -131,6 +215,18 @@ export const getAllUsers = async (req, res) => {
   try {
     const users = await User.find().select("userId name role learning_style_preference");
     return ok(res, users);
+  } catch (error) {
+    return fail(res, error.message, 500);
+  }
+};
+// ✅ GET ALL ENROLLMENTS FOR USER
+export const getUserEnrollments = async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    const enrollments = await Enrollment.find({ userId });
+
+    return ok(res, enrollments);
   } catch (error) {
     return fail(res, error.message, 500);
   }

@@ -18,7 +18,7 @@ export const getCourseById = async (courseId) => await Course.findOne({ courseId
 export const getUserById = async (userId) => await User.findOne({ userId });
 
 export const getActiveEnrollmentForUser = async (userId) =>
-  await Enrollment.findOne({ userId, status: "active" });
+  await Enrollment.findOne({ userId, status: "active" }).sort({ updatedAt: -1 });
 
 export const getPathForUserCourse = async (userId, courseId) =>
   await Path.findOne({ userId, courseId });

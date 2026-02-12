@@ -73,9 +73,9 @@ export default function Asset() {
   if (!asset) return <div className="ss-page ss-center">No asset found.</div>;
 
   return (
-    <div className="ss-shell">
-      {/* SIDEBAR */}
-      <aside className="ss-sidebar">
+    <>
+      {/* SIDEBAR - COMMENTED OUT */}
+      {/* <aside className="ss-sidebar">
         <div className="ss-brand" onClick={() => nav("/")} role="button" tabIndex={0}>
           <div className="ss-logo">⚡</div>
           <div className="ss-brand-text">
@@ -110,10 +110,7 @@ export default function Asset() {
             <div className="ss-usercaret">▾</div>
           </div>
         </div>
-      </aside>
-
-      {/* MAIN */}
-      <main className="ss-main">
+      </aside> */}
         <div className="ss-topbar">
           <button className="ss-course" onClick={() => nav("/path")}>
             <span className="ss-course-name">Learning</span>
@@ -195,8 +192,7 @@ export default function Asset() {
             )}
           </section>
         </div>
-      </main>
-    </div>
+      </>
   );
 }
 

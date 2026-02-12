@@ -138,9 +138,9 @@ export default function Quiz() {
   if (loading) return <div className="ss-page ss-center">Loading quiz…</div>;
 
   return (
-    <div className="ss-shell">
+    <>
       {/* SIDEBAR (self-contained, no AppShell) */}
-      <aside className="ss-sidebar">
+      {/* <aside className="ss-sidebar">
         <div className="ss-brand" onClick={() => nav("/")} role="button" tabIndex={0}>
           <div className="ss-logo">⚡</div>
           <div className="ss-brand-text">
@@ -178,12 +178,10 @@ export default function Quiz() {
             <div className="ss-usercaret">▾</div>
           </div>
         </div>
-      </aside>
+      </aside> */}
 
-      {/* MAIN */}
-      <main className="ss-main">
-        {/* TOPBAR */}
-        <div className="ss-topbar">
+      {/* TOPBAR */}
+      <div className="ss-topbar">
           <button className="ss-course">
             <span className="ss-course-name">Quiz</span>
             <span className="ss-course-caret">▾</span>
@@ -308,7 +306,6 @@ export default function Quiz() {
             </section>
           )}
         </div>
-      </main>
-    </div>
+      </>
   );
 }

@@ -133,9 +133,9 @@ export default function Path() {
   const nowKind = ui.nowItem?.review ? "review" : "now";
 
   return (
-    <div className="ss-shell">
-      {/* SIDEBAR */}
-      <aside className="ss-sidebar">
+    <>
+      {/* SIDEBAR - COMMENTED OUT */}
+      {/* <aside className="ss-sidebar">
         <div className="ss-brand" onClick={() => nav("/")} role="button" tabIndex={0}>
           <div className="ss-logo">⚡</div>
           <div className="ss-brand-text">
@@ -173,12 +173,10 @@ export default function Path() {
             <div className="ss-usercaret">▾</div>
           </div>
         </div>
-      </aside>
+      </aside> */}
 
-      {/* MAIN */}
-      <main className="ss-main">
-        {/* TOPBAR */}
-        <div className="ss-topbar">
+      {/* TOPBAR
+      <div className="ss-topbar">
           <button className="ss-course">
             <span className="ss-course-name">{ui.courseTitle}</span>
             <span className="ss-course-caret">▾</span>
@@ -196,7 +194,7 @@ export default function Path() {
 
             <div className="ss-miniavatar">{(ui.user?.name || "U").slice(0, 1).toUpperCase()}</div>
           </div>
-        </div>
+        </div> */}
 
         {/* PAGE */}
         <div className="path-wrap">
@@ -366,8 +364,7 @@ export default function Path() {
             </section>
           </div>
         </div>
-      </main>
-    </div>
+      </>
   );
 }
 

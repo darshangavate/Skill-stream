@@ -135,68 +135,14 @@ export default function Dashboard() {
   if (!data) return null;
 
   return (
-    <div className="ss-shell">
-      {/* LEFT SIDEBAR */}
-      <aside className="ss-sidebar">
-        <div className="ss-brand">
-          <div className="ss-logo">⚡</div>
-          <div className="ss-brand-text">
-            <div className="ss-brand-name">SkillStream</div>
-          </div>
-        </div>
+    <>
+      {/* SIDEBAR - COMMENTED OUT */}
+      {/* <aside className="ss-sidebar">
+        ...sidebar content...
+      </aside> */}
 
-        <div className="ss-subtitle">Dynamic Upskilling Engine</div>
-
-        <nav className="ss-nav">
-          <button className="ss-navitem active" onClick={() => nav("/")}>
-            <span className="ss-ico">●</span>
-            Dashboard
-          </button>
-          <button className="ss-navitem" onClick={() => nav("/catalog")}>
-            <span className="ss-ico">▦</span>
-            Catalog
-          </button>
-          <button className="ss-navitem" onClick={() => nav("/path")}>
-            <span className="ss-ico">⧉</span>
-            My Path
-          </button>
-          <button className="ss-navitem" onClick={() => nav("/quiz")}>
-            <span className="ss-ico">☑</span>
-            Quiz
-          </button>
-          <button className="ss-navitem" onClick={() => nav("/debug")}>
-            <span className="ss-ico">≡</span>
-            Debug (Admin)
-          </button>
-        </nav>
-
-        <div className="ss-sidebottom">
-          <div className="ss-user">
-            <div className="ss-useravatar">
-              {(ui.user?.name || "J").slice(0, 1).toUpperCase()}
-            </div>
-            <div className="ss-usertext">
-              <div className="ss-username">{ui.user?.name || "John Doe"}</div>
-              <div className="ss-userrole">{ui.user?.role || "Learner"}</div>
-            </div>
-            <div className="ss-usercaret">▾</div>
-          </div>
-
-          <div className="ss-sideactions">
-            <button className="ss-linkbtn" onClick={() => nav("/switch")}>
-              ⟲ Switch User
-            </button>
-            <button className="ss-linkbtn" onClick={() => nav("/logout")}>
-              ⇥ Logout
-            </button>
-          </div>
-        </div>
-      </aside>
-
-      {/* MAIN */}
-      <main className="ss-main">
-        {/* TOP BAR */}
-        <div className="ss-topbar">
+      {/* TOP BAR
+      <div className="ss-topbar">
           <button className="ss-course">
             <span className="ss-course-name">{ui.courseTitle}</span>
             <span className="ss-course-caret">▾</span>
@@ -222,7 +168,7 @@ export default function Dashboard() {
               {(ui.user?.name || "U").slice(0, 1).toUpperCase()}
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* GRID */}
         <div className="ss-grid">
@@ -391,8 +337,7 @@ export default function Dashboard() {
             )}
           </section>
         </div>
-      </main>
-    </div>
+      </>
   );
 }
 
