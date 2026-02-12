@@ -2,8 +2,10 @@ import {
   getUserById,
   getAssets
 } from "./dataStore.js";
+import User from "../models/User.js";
+import Path from "../models/Path.js";
 
-export function updateUserStatsAndPath({
+export async function updateUserStatsAndPath({
   userId,
   path,
   asset,
@@ -12,7 +14,7 @@ export function updateUserStatsAndPath({
   wrongQuestionIds,
   timeSpentMin
 }) {
-  const user = getUserById(userId);
+  const user = await getUserById(userId);
 
   // Update format stats
   const format = asset.format;
@@ -30,14 +32,18 @@ export function updateUserStatsAndPath({
     user.learning_style_preference = formats[0][0] + "_first";
   }
 
+  // Update user in database
+  await User.findOneAndUpdate({ userId }, user, { new: true });
+
   // Simple path update logic
   let reason = "Continuing normal path.";
   let nextAssetId = path.nextAssetId;
 
-  const assets = getAssets().filter(a => a.topic === topic);
+  const assets = await getAssets();
+  const topicAssets = assets.filter(a => a.topic === topic);
 
   if (score < 60) {
-    const easier = assets.find(a =>
+    const easier = topicAssets.find(a =>
       a.difficulty < asset.difficulty &&
       a.format !== asset.format
     );
@@ -47,7 +53,7 @@ export function updateUserStatsAndPath({
       reason = "Low score → switching format + easier asset.";
     }
   } else if (score > 90) {
-    const advanced = assets.find(a => a.level === "advanced");
+    const advanced = topicAssets.find(a => a.level === "advanced");
     if (advanced) {
       nextAssetId = advanced.assetId;
       reason = "High score → jumping to advanced.";
@@ -56,6 +62,9 @@ export function updateUserStatsAndPath({
 
   path.nextAssetId = nextAssetId;
   path.lastUpdatedReason = reason;
+
+  // Update path in database
+  await Path.findOneAndUpdate({ pathId: path.pathId }, path, { new: true });
 
   return {
     nextAssetId,

@@ -25,62 +25,69 @@ function fail(res, message, status = 400) {
 }
 
 // GET QUIZ
-export const getQuiz = (req, res) => {
-  const { userId } = req.params;
-  const { topic, mode = "normal" } = req.query;
+export const getQuiz = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { topic, mode = "normal" } = req.query;
 
-  const user = getUserById(userId);
-  if (!user) return fail(res, "User not found", 404);
+    const user = await getUserById(userId);
+    if (!user) return fail(res, "User not found", 404);
 
-  const questions = pickQuizQuestions(userId, topic, mode);
-  return ok(res, { questions });
+    const questions = await pickQuizQuestions(userId, topic, mode);
+    return ok(res, { questions });
+  } catch (error) {
+    return fail(res, error.message, 500);
+  }
 };
 
 // SUBMIT QUIZ
-export const submitQuiz = (req, res) => {
-  const { userId } = req.params;
-  const {
-    courseId,
-    assetId,
-    topic,
-    timeSpentMin,
-    answers
-  } = req.body;
+export const submitQuiz = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const {
+      courseId,
+      assetId,
+      topic,
+      timeSpentMin,
+      answers
+    } = req.body;
 
-  const asset = getAssetById(assetId);
+    const asset = await getAssetById(assetId);
 
-if (!asset) {
-  return res.status(400).json({
-    ok: false,
-    message: `Invalid asset. Received assetId="${assetId}". Make sure you POST JSON with key "assetId" and Content-Type: application/json.`,
-    receivedBody: req.body
-  });
-}
+    if (!asset) {
+      return res.status(400).json({
+        ok: false,
+        message: `Invalid asset. Received assetId="${assetId}". Make sure you POST JSON with key "assetId" and Content-Type: application/json.`,
+        receivedBody: req.body
+      });
+    }
 
+    const { score, wrongQuestionIds } = await calculateScore(topic, answers);
 
-  const { score, wrongQuestionIds } = calculateScore(topic, answers);
+    const enrollment = await getActiveEnrollmentForUser(userId);
+    const path = await getPathForUserCourse(userId, enrollment.courseId);
 
-  const enrollment = getActiveEnrollmentForUser(userId);
-  const path = getPathForUserCourse(userId, enrollment.courseId);
+    const result = await updateUserStatsAndPath({
+      userId,
+      courseId,
+      path,
+      asset,
+      topic,
+      score,
+      wrongQuestionIds,
+      timeSpentMin
+    });
+    console.log("HEADERS:", req.headers["content-type"]);
+    console.log("BODY:", req.body);
 
-  const result = updateUserStatsAndPath({
-    userId,
-    courseId,
-    path,
-    asset,
-    topic,
-    score,
-    wrongQuestionIds,
-    timeSpentMin
-  });
-  console.log("HEADERS:", req.headers["content-type"]);
-  console.log("BODY:", req.body);
-
-  return ok(res, {
-    score,
-    wrongQuestionIds,
-    nextAssetId: result.nextAssetId,
-    reason: result.reason,
-    updatedPath: result.updatedPath
-  });
+    return ok(res, {
+      score,
+      wrongQuestionIds,
+      nextAssetId: result.nextAssetId,
+      reason: result.reason,
+      updatedPath: result.updatedPath
+    });
+  } catch (error) {
+    return fail(res, error.message, 500);
+  }
 };

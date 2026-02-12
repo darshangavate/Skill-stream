@@ -1,27 +1,30 @@
-import { getQuestions, getAttempts } from "./dataStore.js";
+import { getQuestions, getAttemptsByUser } from "./dataStore.js";
 
-export function pickQuizQuestions(userId, topic, mode) {
-  const allQuestions = getQuestions().filter(q => q.topic === topic);
+export async function pickQuizQuestions(userId, topic, mode) {
+  const allQuestions = await getQuestions();
+  const topicQuestions = allQuestions.filter(q => q.topic === topic);
 
   if (mode === "retry") {
-    const attempts = getAttempts().filter(a => a.userId === userId && a.topic === topic);
-    const lastAttempt = attempts[attempts.length - 1];
+    const attempts = await getAttemptsByUser(userId);
+    const topicAttempts = attempts.filter(a => a.topic === topic);
+    const lastAttempt = topicAttempts[topicAttempts.length - 1];
 
     if (!lastAttempt || lastAttempt.wrongQuestionIds.length === 0) {
-      return allQuestions.slice(0, 3);
+      return topicQuestions.slice(0, 3);
     }
 
-    return allQuestions.filter(q =>
+    return topicQuestions.filter(q =>
       lastAttempt.wrongQuestionIds.includes(q.questionId)
     );
   }
 
   // Normal mode → return first 3 for MVP
-  return allQuestions.slice(0, 3);
+  return topicQuestions.slice(0, 3);
 }
 
-export function calculateScore(topic, answers) {
-  const questions = getQuestions().filter(q => q.topic === topic);
+export async function calculateScore(topic, answers) {
+  const allQuestions = await getQuestions();
+  const questions = allQuestions.filter(q => q.topic === topic);
 
   let correct = 0;
   let wrongIds = [];
